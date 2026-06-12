@@ -13,15 +13,42 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Стихотворения/Савинов Феодосий Петрович.md",
+                "file": "prompt.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Савинов Феодосий Петрович"
+              "title": "prompt"
+            }
+          },
+          {
+            "id": "909f02a59b9db250",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "prompt.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "prompt"
+            }
+          },
+          {
+            "id": "7158720a5bde1822",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Books/Anthony Williams C++ Concurrency In Action  2nd edition/C++ Concurrency in Action.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "C++ Concurrency in Action"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -182,17 +209,21 @@
       "bases:Create new base": false
     }
   },
-  "active": "1bfa7a83a4b997fb",
+  "active": "909f02a59b9db250",
   "lastOpenFiles": [
-    "Слова/Долина.md",
-    "Стихотворения/Савинов Феодосий Петрович.md",
-    "Слова/Раздолье.md",
-    "Слова/Нивы.md",
+    "Books/Anthony Williams C++ Concurrency In Action  2nd edition/C++ Concurrency in Action.md",
+    "Books/Anthony Williams C++ Concurrency In Action  2nd edition/C++ Concurrency in Action.pdf",
+    "prompt.md",
     "Hotkeys.md",
+    "Слова/раздолье.md",
+    "Books/Anthony Williams C++ Concurrency In Action  2nd edition",
+    "Слова/нивы.md",
+    "Слова/долина.md",
+    "Fun/Fun.md",
+    "Стихотворения/Савинов Феодосий Петрович.md",
     "Поэты/Феодосий Петрович Савинов.md",
     "Поэты",
     "Слова",
-    "Fun/Fun.md",
     "Books/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14.md",
     "Fun",
     "Books/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14/Scott Meyers-Effective Modern C++_ 42 Specific Ways to Improve Your Use of C++11 and C++14-O'Reilly Media (2014).pdf",
@@ -203,8 +234,6 @@
     "Untitled asdf.md",
     "Untitledasdf.md",
     "Untitled 1.md",
-    "Welcome.md",
-    "Стихотворения",
-    "Untitled/Untitled"
+    "Welcome.md"
   ]
 }
