@@ -1,38 +1,274 @@
 
-Привет!
-
-Я читаю книгу "C++ Concurrency in Action. 2nd ed".
-
+Я дальше читаю книгу "C++ Concurrency in Action. 2nd ed".
 Переведи сначала текст. Потом сделай к нему пояснения.
-
 Вот фрагмент из книги:
 
   
 
 ""
 
-  Chapter 8.
+### *8.1.1 Dividing data between threads before processing begins*
 
-# Designing concurrent code
+The easiest algorithms to parallelize are simple algorithms, such as std::for\_each, that perform an operation on each element in a data set. In order to parallelize this algorithm, you can assign each element to one of the processing threads. How the elements are best divided for optimal performance depends on the details of the data structure, as you'll see later in this chapter when we look at performance issues.
+The simplest means of dividing the data is to allocate the first *N* elements to one thread, the next *N* elements to another thread, and so on, as shown in figure 8.1, but other patterns could be used too. No matter how the data is divided, each thread then processes the elements it has been assigned without any communication with the other threads until it has completed its processing.
 
-# *This chapter covers*
+This structure will be familiar to anyone who has programmed using the Message Passing Interface (MPI, http://www.mpi-forum.org/) or OpenMP (http://www.openmp .org/) frameworks: a task is split into a set of parallel tasks, the worker threads run these tasks independently, and the results are combined in a final *reduction* step. It's the
 
-- Techniques for dividing data between threads
-- Factors that affect the performance of concurrent code
-- How performance factors affect the design of data structures
-- Exception safety in multithreaded code
-- Scalability
-- Example implementations of several parallel algorithms
+![](_page_275_Figure_8.jpeg)
 
-Most of the preceding chapters have focused on the tools you have in your C++ toolbox for writing concurrent code. In chapters 6 and 7 we looked at how to use those tools to design basic data structures that are safe for concurrent access by multiple threads. Much as a carpenter needs to know more than how to build a hinge or a joint in order to make a cupboard or a table, there's more to designing concurrent code than the design and use of basic data structures. You now need to look at the wider context so you can build bigger structures that perform useful work. I'll be using multithreaded implementations of some of the C++ Standard Library algorithms as examples, but the same principles apply at all scales of an application.
+Figure 8.1 Distributing consecutive chunks of data between threads
 
- Just as with any programming project, it's vital to think carefully about the design of concurrent code. But with multithreaded code, there are even more factors to consider than with sequential code. Not only must you think about the usual factors, such as encapsulation, coupling, and cohesion (which are amply described in the many books on software design), but you also need to consider which data to share, how to synchronize accesses to that data, which threads need to wait for which other threads to complete certain operations, and so on.
+approach used by the accumulate example from section 2.4; in this case, both the parallel tasks and the final reduction step are accumulations. For a simple for\_each, the final step is a no-op because there are no results to reduce.
 
- In this chapter we'll be focusing on these issues, from the high-level (but fundamental) considerations of how many threads to use, which code to execute on which thread, and how this can affect the clarity of the code, to the low-level details of how to structure the shared data for optimal performance.
+Identifying this final step as a reduction is important; a naive implementation such as listing 2.9 will perform this reduction as a final serial step. But this step can often be parallelized as well; accumulate *is* a reduction operation, so listing 2.9 could be modified to call itself recursively where the number of threads is larger than the minimum number of items to process on a thread, for example. Alternatively, the worker threads could be made to perform some of the reduction steps as each one completes its task, rather than spawning new threads each time.
 
-Let's start by looking at techniques for dividing work between threads.
+Although this technique is powerful, it can't be applied to everything. Sometimes the data can't be divided neatly up front because the necessary divisions become apparent only as the data is processed. This is particularly apparent with recursive algorithms such as Quicksort; they therefore need a different approach.
   
 ""
 
 
 Как переводится слово "cohesion"?
+
+
+
+
+Привет!
+Я читаю учебник по математическому анализу Зорич В. А.
+Помоги разобраться.
+Вот текст:
+
+""
+\section*{Глава I}
+
+\section*{Некоторые общематематические понятия и обозначения}
+
+\section*{§ I. Логическая символика}
+
+  
+
+Связки и скобки. Язык этой книги, как и большинства математических текстов, состоит из обычного языка и ряда специальных символов излагаемых теорий. Наряду с этими специальными символами, которые будут вводиться по мере надобности, мы используем распространенные символы математической логики $\neg, \wedge, \vee, \Rightarrow, \Leftrightarrow$ для обозначения соответственно отрицания «не» и связок «и», «или», «влечет», «равносильно» ${ }^{1}$.
+
+  
+
+Возьмем, например, три представляющих и самостоятельный интерес высказывания:\\
+
+L. «Если обозначения удобны для открытий ..., то поразительным образом сокращается работа мысли» (Г.Лейбниц ${ }^{2}$ ).\\
+
+P. «Математика - это искусство называть разные вещи одинаковыми именами» (А. Пуанкаре ${ }^{3}$ ).\\
+
+G. «Великая книга природы написана языком математики» (Г. Галилей ${ }^{4}$ ).
+
+  
+
+Тогда в соответствии с указанными обозначениями:
+
+\begin{itemize}
+
+\item Запись $L \Rightarrow P$ означает: $L$ влечет $P$.
+
+\item $L \Leftrightarrow P$: $L$ равносильно $P$.
+
+\item $((L \Rightarrow P) \wedge (\neg P)) \Rightarrow (\neg L)$: Если $P$ следует из $L$ и $P$ неверно, то $L$ неверно.
+
+\item $\neg((L \Leftrightarrow G) \vee (P \Leftrightarrow G))$: $G$ не равносильно ни $L$, ни $P$.
+
+\end{itemize}
+
+  
+
+\footnotetext{${ }^{1}$ В логике вместо символа $\wedge$ чаще используется символ \&. Символ $\Rightarrow$ импликации логики чаще пишут в виде →, а отношение равносильности-в виде $\leftarrow\rightarrow$ или ↔. Однако мы будем придерживаться указанной в тексте символики, чтобы не перегружать традиционный для анализа знак → предельного перехода.\\
+
+${ }^{2}$ Г. В. Лейбниц (1646-1716) - выдающийся немецкий ученый, философ и математик, которому наряду с Ньютоном принадлежит честь открытия основ анализа бесконечно малых.\\
+
+${ }^{3}$ А. Пуанкаре (1854-1912) - французский математик, блестящий ум которого преобразовал многие разделы математики и достиг ее фундаментальных приложений в математической физике.\\
+
+${ }^{4}$ Г. Галилей (1564-1642) - итальянский ученый, крупнейший естествоиспытатель. Его труды легли в основу всех последующих физических представлений о пространстве и времени. Отец современной физической науки.
+
+}Мы видим, что пользоваться только формальными обозначениями, избегая разговорного языка, - не всегда разумно.
+
+  
+
+Мы замечаем, кроме того, что в записи сложных высказываний, составленных из более простых, употребляются скобки, выполняющие ту же синтаксическую функцию, что и при записи алгебраических выражений. Как и в алгебре, для экономии скобок можно договориться о «порядке действий». Условимся с этой целью о следующем порядке приоритета символов:
+
+  
+
+$$
+
+\neg, \wedge, \vee, \Rightarrow, \Leftrightarrow .
+
+$$
+
+  
+
+При таком соглашении выражение $\neg A \wedge B \vee C \Rightarrow D$ следует расшифровать как $(((\neg A) \wedge B) \vee C) \Rightarrow D$, а соотношение $A \vee B \Rightarrow C$ - как $(A \vee B) \Rightarrow C$, но не как $A \vee(B \Rightarrow C)$.
+
+  
+
+Записи $A \Rightarrow B$, означающей, что $A$ влечет $B$ или, что то же самое, $B$ следует из $A$, мы часто будем придавать другую словесную интерпретацию, говоря, что $B$ есть необходимый признак или необходимее условие $A$ и, в свою очередь, $A$ - достаточное условие или достаточный признак $B$. Таким образом, соотношение $A \Leftrightarrow B$ можно прочитать любым из следующих способов:\\
+
+$A$ необходимо и достаточно для $B$;\\
+
+$A$ тогда и только тогда, когда $B$;\\
+
+$A$, если и только если $B$;\\
+
+$A$ равносильно $B$.\\
+
+Итак, запись $A \Leftrightarrow B$ означает, что $A$ влечет $B$ и, одновременно, $B$ влечет $A$.
+
+  
+
+Употребление союза $u$ в выражении $A \wedge B$ пояснений не требует.\\
+
+Следует, однако, обратить внимание на то, что в выражении $A \vee B$ союз или неразделительный, т. е. высказывание $A \vee B$ считается верным, если истинно хотя бы одно из высказываний $A, B$. Например, пусть $x$-такое действительное число, что $x^{2}-3 x+2=0$. Тогда можно написать, что имеет место следующее соотношение:
+
+  
+
+$$
+
+\left(x^{2}-3 x+2=0\right) \Leftrightarrow(x=1) \vee(x=2) .
+
+$$
+""
+
+
+
+
+((A⇒B)∧(¬B))⇒(¬A)
+
+Я не понял эту запись. Что она означает?
+
+
+
+Почему "В математике все **определения** — это необходимые и достаточные условия.". Как это понимать
+
+
+
+
+Дай мне задания на эту тему.
+
+
+
+
+Проверь моё понимание.
+У нас есть утверждение "sqrt(2) - иррациональное число". Мы говорим, что будем доказывать от противного. Значит, мы инверсируем это утверждение и получаем:
+"sqrt(2) - неиррациональное число", т.е. "sqrt(2) - рациональное число". Говорим, что это наше утверждение A. Т.к. sqrt(2) - рациональное число, то его можно представить в виде несократимой дроби
+
+$$
+	\sqrt{2} = \frac{m}{n}
+$$
+Утверждение "его можно представить в виде несократимой дроби" будет B.
+Возведём это выражение в квадрат. Получаем:
+$$
+2n^2 = m^2
+$$
+
+Получаем, что m чётное. Разделим выражение на 2. Т.е. его можно записать в виде $m = 2k$ Получаем:
+$$
+2 n^2 = 4k^2
+$$
+$$
+
+n^2 = 2k^2
+$$
+
+Т.е. n тоже четное, т.е. m и n два чётных числа, т.е. m / n - сократимая дробь. Т.е. мы получили, что  B неверно.
+И тогда у нас получается следующее: $((A \Rightarrow B) \wedge (\neg B)) \Rightarrow \neg A$
+Т.е. левая часть у нас истинна, т.е. верно $\neg A$, т.е.  "sqrt(2) - иррациональное число".
+
+
+Задача:
+
+**Дано:** Сумма двух целых чисел x и y является **нечетным** числом (например, x+y=7).
+
+**Докажи методом от противного утверждение:** Хотя бы одно из чисел x или y является **четным**.
+
+Доказательство.
+Исходное утверждение: "Если сумма x и y нечётная, то одно из чисел является чётным".
+(У меня вот здесь возник вопрос. Вот это утверждение можно же записать как $A \Rightarrow B$, где A - сумма x и y нечётная, а B = одно из чисел x и y является чётным. Т.к. мы считаем, что запись $A \Rightarrow B$ верная, т.е. это истина (и A = 1 и B = 1), то ложь возникнет, когда B станет = 0. То чтобы получить отрицание утверждения, мы просто должны инвертировать B. Но в B говорится только про одно число. Тогда отрицание будет 0 и 2 числа. Т.е. мы должны рассмотреть 2 случая? Я правильно понял?)
+1-ый случай: Отрицание утверждения: ""Если сумма x и y нечётная, то НИКАКОЕ из чисел является чётным"", т.е. оба числа нечётные. Это наше утверждение A. (Мы можем всё импликацию считать как одно выражение?). Пусть утверждение B будет таким "x + y = 2k + 1", т.е. нечётное число. Но т.к. x и y нечётные, то их можно представить в виде: $x = 2l + 1$, $y = 2t + 1$, получаем: $x + y = 2l + 1 + 2t + 1 = 2(l + t) + 2$ - чётное число. Т.е. получается верно $\neg B$. Отсюда: $((A \Rightarrow B) \wedge (\neg B)) \Rightarrow \neg A$ верно $\neg A$, т.е. верно утверждение: "Если сумма x и y нечётная, то одно из чисел является чётным"
+
+2-ой случай: Отрицание утверждения: "Если сумма x и y нечётная, то ОБА числа являются чётными". Это наше утверждение A. Пусть утверждение B будет таким "x + y = 2k + 1".  Но т.к. x и y чётные, то их можно представить в виде: $x = 2l$, $y = 2t$, получаем: $x + y = 2l + 2t = 2(l + t)$ - чётное число.  . Т.е. получается верно $\neg B$. Отсюда: $((A \Rightarrow B) \wedge (\neg B)) \Rightarrow \neg A$ верно $\neg A$, т.е. верно утверждение: "Если сумма x и y нечётная, то одно из чисел является чётным"
+
+
+Вот исходное условие задачи:
+""
+**Дано:** Сумма двух целых чисел x и y является **нечетным** числом (например, x+y=7).
+
+**Докажи методом от противного утверждение:** Хотя бы одно из чисел x или y является **четным**.
+""
+
+Тут написано "хотя бы одно", т.е. два чётных тоже подходит. Но сумма двух чётных тоже чётное число. Поэтому правильная формулировка утверждения на самом деле должна быть такая: "одно из чисел является чётным, а другое нечётным".
+Тогда как сделать отрицание этого утверждения?
+
+
+Я дальше читаю учебник по математическому анализу Зорич В. А.
+Помоги разобраться.
+Вот текст:
+
+""
+\textbf{2. Замечания о доказательствах}. Типичное математическое утверждение имеет вид $A \Rightarrow B$, где $A$ - посылка, а $B$ - заключение. Доказательство такого утверждения состоит в построении цепочки $A \Rightarrow C_{1} \Rightarrow \ldots \Rightarrow C_{n} \Rightarrow B$ следствий, каждый элемент которой либо считается аксиомой, либо является уже доказанным утверждением ${ }^{1}$.
+
+  
+
+В доказательствах мы будем придерживаться классического правила вывода: если $A$ истинно и $A \Rightarrow B$, то $B$ тоже истинно.
+
+  
+
+\footnotetext{${ }^{1}$ Запись $A \Rightarrow B \Rightarrow C$ будет употребляться как сокращение для $(A \Rightarrow B) \wedge(B \Rightarrow C)$.
+
+}
+
+  
+
+При доказательстве от противного мы будем использовать также принцип исключенного третьего, в силу которого высказывание $A \vee \neg A$ ( $A$ или не $A$ ) считается истинным независимо от конкретного содержания высказывания $A$. Следовательно, мы одновременно принимаем, что $\neg(\neg A) \Leftrightarrow A$, т. е. повторное отрицание равносильно исходному высказыванию.\\
+
+  
+
+\textbf{3. Некоторые специальные обозначения}. Для удобства читателя и сокращения текста начало и конец доказательства условимся отмечать знаками $\triangleleft$ и $\triangleright$ соответственно.
+
+  
+
+Условимся также, когда это будет удобно, вводить определения посредством специального символа $:=$ (равенство по определению), в котором двоеточие ставится со стороны определяемого объекта.
+
+  
+
+Например, запись
+
+  
+
+$$
+
+\int f(x) d x:=\lim _{\lambda(P) \rightarrow 0} \sigma(f ; P, \xi)
+
+$$
+
+  
+
+определяет левую часть посредством правой части, смысл которой предполагается известным.
+
+  
+
+Аналогично вводятся сокращенные обозначения для уже определенных выражений. Например, запись
+
+  
+
+$$
+
+\sum_{i=1}^{n} f\left(\xi_{i}\right) \Delta x_{i}=: \sigma(f ; P, \xi)
+
+$$
+
+  
+
+вводит обозначение $\sigma(f ; P, \xi)$ для стоящей слева суммы специального вида.\\
+
+""
+
+Мне не понятно вот это правило:
+Если A истинно и A⇒B, то B тоже истинно
+
+Почему это так? Это аксиома или теорема? Можешь привести пример?
+
+
+Можешь привести пример ложной импликации? Как это работает? Что это значит? Она встречается в математике?
