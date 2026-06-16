@@ -1,0 +1,68 @@
+%%% Это xspace.sty/.dtx by David Carlisle from `tools' bundle,
+%%% модифицированный для работы в следующем случае:
+%%%
+%%%     \newcommand{\Ш}{Шрёдингера\xspace}
+%%%      ... называется \emph{уравнением \Ш}. ...
+%%%
+%%%                                                            24.09.98
+
+%%
+%% This is file `xspace.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% xspace.dtx  (with options: `package')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% This file is a generated file from the sources of the `tools' bundle
+%% in the LaTeX2e distribution.
+%% 
+%% For the copyright notice see the source file(s).
+%% 
+%% You are not allowed to modify this file.
+%% 
+%% You are allowed to distribute this file if and only if
+%% it is distributed with the corresponding source files in
+%% the `tools' bundle.
+%% 
+%% For the copying and distribution conditions of the source files,
+%% see the file readme.txt distributed with the tools bundle.
+%% 
+%% File: xspace.dtx Copyright (C) 1991-1996 David Carlisle
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{xspace}
+%          [1997/10/13 v1.06 Space after command names (DPC)]
+           [1998/09/24]
+\DeclareRobustCommand\xspace{\futurelet\@let@token\@xspace}
+\def\@xspace{%
+  \ifx\@let@token\bgroup\else
+  \ifx\@let@token\egroup\else
+  \ifx\@let@token\/\else
+  \ifx\@let@token\ \else
+  \ifx\@let@token~\else
+  \ifx\@let@token.\else
+  \ifx\@let@token!\else
+  \ifx\@let@token,\else
+  \ifx\@let@token:\else
+  \ifx\@let@token;\else
+  \ifx\@let@token?\else
+  \ifx\@let@token/\else
+  \ifx\@let@token'\else
+  \ifx\@let@token)\else
+  \ifx\@let@token-\else
+  \ifx\@let@token\@xobeysp\else
+  \ifx\@let@token\space\else
+  \ifx\@let@token\@sptoken\else
+% А добавлено следующее:
+  \ifx\@let@token\check@icr\else
+% Это -- для случая, когда \xspace используется в конце строчки оглавления
+% в documentclass'е article.
+  \ifx\@let@token\nobreak\else
+   \space
+   \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi}
+
+\endinput
+%%
+%% End of file `xspace.sty'.

@@ -1,0 +1,472 @@
+% Стилевой файл для серии "Лекции по математической логике
+% и теории алгоритмов". Изготовление : А.Шень, В.Шувалов, А.Черепанов
+
+\ProvidesPackage{shen}[2012/04/04] % пожалуйста, изменяйте дату при добавлениях
+
+\usepackage{cmap}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{../macros/russlh}
+\usepackage[indentheadings]{../macros/russcorr}
+\usepackage{remreset}
+\usepackage{../macros/xspace}[1998/09/24]
+\usepackage[papersize={143mm,210mm},width=110mm,height=170mm,headsep=12pt,
+heightrounded,inner=15mm,vratio=3:4]{geometry}
+\usepackage{layout}
+\usepackage{ifpdf}
+\ifpdf
+%\usepackage{../macros/pdfstringdefPostHook}
+\usepackage[pdftex,colorlinks=true,linkcolor=blue,unicode=true,hyperfootnotes=false,bookmarksnumbered]{hyperref}
+%\usepackage[cam,a4,center]{crop}
+%\nonstopmode
+\fi
+
+\makeindex
+\makeglossary
+
+\emergencystretch=3mm
+\renewcommand{\bfdefault}{b}
+
+\def\@dottedtocline#1#2#3#4#5{%
+  \ifnum #1>\c@tocdepth \else
+    \vskip \z@ \@plus.2\p@
+    {\leftskip #2\relax \rightskip \@tocrmarg plus 1fil \parfillskip -\rightskip
+%                                             ^^^^^^^^^
+%   добавлено, чтобы сделать raggedright внутри пункта оглавления
+     \parindent #2\relax\@afterindenttrue
+     \interlinepenalty\@M
+     \leavevmode
+     \@tempdima #3\relax
+     \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+     {#4}\nobreak
+     \leaders\hbox{$\m@th
+        \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+        mu$}\hskip 1em plus 1fill
+%                      ^^^^^^^^^^
+%       добавлено, чтобы конец текста в строке оглавления
+%       был отделён от номера страницы leader'ами
+     \nobreak
+     \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
+     \par}%
+  \fi}
+
+\@removefromreset{figure}{chapter}
+\renewcommand{\thefigure}{\arabic{figure}}
+
+% --------------------- Новые макрокоманды ---------------------------
+
+\newcommand{\problskip}{\medskip}
+
+\newcommand{\quotindent}{\medskip}
+
+\renewenvironment{thebibliography}[1]
+     {\chapter*{\bibname
+        \@mkboth{\bibname}{\bibname}}%
+        \addcontentsline{toc}{schapter}{\bibname}
+        \raggedbottom
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\renewenvironment{theindex}
+               {\if@twocolumn
+                  \@restonecolfalse
+                \else
+                  \@restonecoltrue
+                \fi
+                \columnseprule 0.2pt
+                \columnsep 15\p@
+                \multicolsep0pt
+                \chapter*{\indexname}
+                \addcontentsline{toc}{schapter}{\indexname}
+                \@mkboth{\indexname}%
+                        {\indexname}%
+                \small
+                \begin{multicols}{2}\parindent\z@
+                \parskip\z@ \@plus .3\p@\relax
+                \let\item\@idxitem}
+               {\end{multicols}}
+\renewcommand\@idxitem{\par\hangindent 20\p@}
+\renewcommand\subitem{\@idxitem \hspace*{10\p@}}
+\renewcommand\subsubitem{\@idxitem \hspace*{15\p@}}
+
+\newcommand{\quot}[1]{\par\quotindent\hbox to\textwidth{%
+\vrule\hskip 2pt\vrule\hfil\parbox{.97\textwidth}{\slshape #1}}\quotindent}
+
+% --------------------- Символы всех сортов --------------------------
+
+\newcommand{\Н}{\textbf{Н}}
+\newcommand{\К}{\textbf{К}}
+\newcommand{\И}{\textbf{И}}
+\newcommand{\T}{\textbf{T}}
+\newcommand{\Л}{\textbf{Л}}
+\newcommand{\F}{\textbf{F}}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\geq}{\geqslant}
+\newcommand{\highchi}{\hbox{\raisebox{1.5pt}{\hbox{$\chi$}}}}
+
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\Val}{Val}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\size}{size}
+\DeclareMathOperator{\fsize}{fsize}
+\DeclareMathOperator{\comp}{Comp}
+\DeclareMathOperator{\depth}{depth}
+\DeclareMathOperator{\inv}{inv}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\opSubset}{Subset}
+\DeclareMathOperator{\Intersect}{Intersect}
+\DeclareMathOperator{\Disjoint}{Disjoint}
+\DeclareMathOperator{\Step}{Step}
+\DeclareMathOperator{\Subst}{Subst}
+\DeclareMathOperator{\Correct}{Correct}
+\DeclareMathOperator{\Proof}{Proof}
+\DeclareMathOperator{\Length}{Length}
+\DeclareMathOperator{\Select}{Select}
+\DeclareMathOperator{\Append}{Append}
+\DeclareMathOperator{\opsum}{sum}
+\DeclareMathOperator{\opprod}{prod}
+\DeclareMathOperator{\lastx}{last-x}
+\DeclareMathOperator{\lasty}{last-y}
+\DeclareMathOperator{\allbutlast}{all-but-last}
+
+\newcommand{\lem}{\le_m}
+\newcommand{\leqT}{\le_T}
+
+\newcommand{\lbk}{[\![}
+\newcommand{\rbk}{]\!]}
+
+%\newcommand{\subtr}{\mathbin{\stackrel{.}{-}}}
+\newcommand{\subtr}{\mathbin{\lower3pt\rlap{$\dot{\phantom{-}}$}-}}
+
+% by А. Черепанов
+
+\newcommand*{\defcal}[1]{\expandafter
+    \DeclareMathSymbol\csname cal#1\endcsname{\mathord}{symbols}{`#1}}
+
+\defcal F
+\defcal A
+\defcal G
+\defcal B
+
+\DeclareMathSymbol{\bbN}{\mathord}{AMSb}{`\N}
+\DeclareMathSymbol{\bbZ}{\mathord}{AMSb}{`\Z}
+\DeclareMathSymbol{\bbB}{\mathord}{AMSb}{`\B}
+\DeclareMathSymbol{\bbR}{\mathord}{AMSb}{`\R}
+\DeclareMathSymbol{\bbQ}{\mathord}{AMSb}{`\Q}
+\DeclareMathSymbol{\bbC}{\mathord}{AMSb}{`\C}
+
+\newcommand{\bfnull}{\mathbf0}
+
+% ---------------- команды типа \те (т.е.), \т (тире) -------------------
+
+% Этот раздел скопирован из стилевого файла А.Черепанова
+%
+% Набирайте "т.е." командой \те . Остальное -- аналогично.
+% Теперь можно не беспокоиться о пробелах после этих команд.
+% Например, можно наравне с
+%     ..., \те\ ...
+%     ..., \те{} ...
+% писать просто
+%     ..., \те ...
+\newcommand*{\те}{т.\,е.\xspace}
+\newcommand*{\Те}{Т.\,е.\xspace}
+\newcommand*{\тк}{т.\,к.\xspace}
+\newcommand*{\Тк}{Т.\,к.\xspace}
+\newcommand*{\итд}{и~т.\,д.\xspace}
+\newcommand*{\итп}{и~т.\,п.\xspace}
+
+% Команда \клей позволяет приклеивать слова к формуле или ещё чему-нибудь.
+% Напр., "частицы\клей $+$\клей поле"
+% Команды \д (\ч) и \Д (\Ч) ставят дефисы (чёрточки), после которых
+% разрывы строки запрещены и разрешены, соответсвенно.
+% Итак,
+%   \д ставит дефис, после которого разрыв строки ЗАПРЕЩЁН.
+%         Напр., "$1$\д форма"
+%   \Д ставит дефис, после которого разрыв строки РАЗРЕШЁН.
+%         Напр., "Остроградского\Ч Гаусса" (или тут нужно \Д ?)
+% Для интересующихся: если написать "$1$-форма" или "Остроградского--Гаусса",
+% то будет разрешено разрывать строчку после дефиса и запрещено переносить
+% слова "форма", "Остроградского" и "Гаусса". По этой причине и появилась
+% команда \клей.
+\newcommand*{\клей}{\nobreak\hskip\z@skip}
+\DeclareRobustCommand*{\д}{\клей\hbox{-}\клей}
+\DeclareRobustCommand*{\Д}{\клей\hbox{-}\hskip\z@skip}
+\DeclareRobustCommand*{\ч}{\,\textendash\,\клей}
+\DeclareRobustCommand*{\Ч}{\,\textendash\,\hskip\z@skip}
+\DeclareRobustCommand*{\т}{~\textemdash{} }
+\DeclareRobustCommand*{\Т}{~\textemdash{} }
+
+% by А.Черепанов
+
+%%% Чтобы после \пк автоматически ставился пробел, если нужно
+%\let\символ@пк\пк
+%\renewcommand*{\пк}{\символ@пк\xspace}
+
+% --------------------------- Переносы -----------------------------------
+
+\hyphenation{оп-ре-де-ле-ний}
+\hyphenation{функ-ции функ-цию функ-ций функ-циям функ-ция}
+\hyphenation{ус-пех}
+\hyphenation{ус-ло-вия}
+\hyphenation{прог-рам-му}
+\hyphenation{пе-ре-чис-ли-мых}
+\hyphenation{оп-ре-де-ле-нию мно-жест-во}
+\hyphenation{те-ку-щее сим-вол но-вое}
+\hyphenation{отож-деств-лять бес-кван-тор-ная}
+\hyphenation{ак-сио-ма-ти-чес-кой}
+\hyphenation{вы-пук-лый}
+
+% -------------------------- Оглавление ----------------------------------
+
+\renewcommand{\tableofcontents}%
+{\chapter*{\contentsname\markboth{\contentsname}{\contentsname}}\@starttoc{toc}}
+
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{1.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \sffamily
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+    \smallskip
+  \fi}
+
+\newcommand*\l@schapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 0.5em \@plus\p@
+    \setlength\@tempdima{1.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \sffamily
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+  \fi}
+
+% ------------------- Оформление заголовков и страниц ---------------------
+
+% \numchapter=1, если глава начата командой \chapter
+% \numchapter=0, если глава начата командой \chapter*
+\newcounter{numchapter}
+\newcommand{\numchapter}{\arabic{numchapter}}
+
+\setcounter{secnumdepth}{2}
+
+\renewcommand{\@makechapterhead}[1]{
+  {
+   \hangindent=2cm
+   \raggedright\parindent=15pt
+   \Large\sffamily             % Шрифт заголовка
+   \thechapter.                % Не переводим строчку после номера главы
+%   \hspace{2mm}                % Пробел между номером и названием главы
+   #1\par                      % Название главы
+   \setcounter{numchapter}{1}  % это глава, начатая с \chapter
+   \nopagebreak                % Не отрывать заголовок главы от текста
+   \vspace{5mm}               % Пробел между заголовком и текстом
+  }
+}
+
+\renewcommand{\@makeschapterhead}[1]{
+  {
+   \hangindent=2cm
+   \raggedright\parindent=15pt
+   \Large\sffamily             % Шрифт заголовка
+%  \thechapter.                 % Не переводим строчку после номера главы
+%   \hspace{2mm}                % Пробел между номером и названием главы
+   #1\par                      % Название главы
+   \setcounter{numchapter}{0}  % это глава, начатая с \chapter*
+   \nopagebreak                % Не отрывать заголовок главы от текста
+   \vspace{5mm}                % Пробел между заголовком и текстом
+  }
+}
+
+\renewcommand{\chapter}{\clearpage
+  \thispagestyle{empty}
+  \global\@topnum=0
+  \@afterindenttrue
+  \secdef\@chapter\@schapter}
+
+\renewcommand{\section}{\@startsection{section}{1}{\parindent}
+    {3mm plus 1mm minus .5mm}{2mm plus 1mm minus .5mm}
+    {\large\sffamily}}
+
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\parindent}
+    {2mm plus .5mm minus .5mm}{1mm plus .5mm minus .5mm}
+    {\sffamily}}
+
+% --------------------------- Колонтитулы ------------------------------------
+
+% если \numchapter=0, то [гл.~\thechapter] и [п.~\arabic{section}]
+% не печатаются; если \numchapter=1, то печатаются
+
+\renewcommand{\@evenhead}{\ifnum\numchapter=1%
+{\hbox to\textwidth{\footnotesize\upshape\thepage\hfill\strut\leftmark}}%
+\else{\hbox to\textwidth{\footnotesize\upshape\thepage\hfill\strut%
+\itshape\leftmark\strut\hfill}}\fi
+}
+\renewcommand{\@oddhead}{\ifnum\numchapter=1%
+{\hbox to\textwidth{\rightmark\hfill\footnotesize\upshape\thepage}}%
+\else{\hbox to\textwidth{\hfill\strut\footnotesize\itshape\rightmark\strut%
+\hfill\upshape\thepage}}\fi
+}
+
+\renewcommand{\sectionmark}[1]{\markright%
+%{\footnotesize\presection\thesection\postsection{#1}}}
+{\footnotesize\upshape[п.~\arabic{section}]\hfill\strut\itshape{#1}}}
+
+\renewcommand{\chaptermark}[1]{\markboth
+%{\footnotesize \thechapter.~{#1}}
+%{\footnotesize \thechapter.~{#1}}}
+{\itshape\footnotesize{#1}\strut\hfill\upshape{[гл.~\thechapter]}}
+{\hfill\footnotesize\itshape{#1}}}
+
+% ----------------------------------------------------------------------------
+
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\presection}{}
+\renewcommand{\postsection}{. }
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\renewcommand{\presubsection}{}
+\renewcommand{\postsubsection}{. }
+
+% ------------------------- Теоремы, леммы, задачи ---------------------------
+
+\newcounter{probl}%[chapter]
+\newcounter{theor}%[chapter]
+
+\newenvironment{problem}
+  {\par\indent\refstepcounter{probl}\small{\bfseries\arabic{probl}.}}%
+  {\par\normalsize}
+%\renewcommand{\theprobl}{\arabic{probl} (стр.\,thepage)}
+\renewcommand{\theprobl}{\arabic{probl}}
+
+\newenvironment{historyremark}
+{\smallskip\par\small}{\par\normalsize\smallskip}
+
+% ------- Теперь у окружения theorem появился необязательный аргумент --------
+
+\newcommand{\theor}{{\sffamily Теорема \arabic{theor}. }}
+\newcommand{\namedtheor}[1][]{{\sffamily Теорема \arabic{theor} (#1). }}
+
+\newenvironment{theorem}{\par\indent\refstepcounter{theor}%
+\@ifnextchar[{\namedtheor}{\theor{}}}{}
+
+% ----------------------- А вот что было раньше -----------------------------
+
+%%%\newenvironment{theorem}
+%%%{\par\refstepcounter{theor}{\sffamily Теорема \arabic{theor}.}}{}
+%%%\renewcommand{\thetheor}{\arabic{theor} (стр.\,\thepage)}
+%%%
+%%%\newenvironment{namedtheorem}[1]
+%%%{\par\refstepcounter{theor}%
+%%%{\sffamily Теорема \arabic{theor} (#1).}}{}
+
+% ---------------------------------------------------------------------------
+
+\renewcommand{\thetheor}{\arabic{theor}}
+
+\newenvironment{proof}
+{\par$\lhd%\blacktriangleleft
+$}{\nolinebreak$\rhd%\blacktriangleright
+$}
+
+\newenvironment{algor}
+{\begin{quote}}{\end{quote}}
+
+\newcommand{\lemma}[1]{\par\textsf{#1}}
+
+\newenvironment{remark}
+{\ttfamily}{\normalfont}
+
+% ---------------------------------------------------------------------------
+
+% by А.Черепанов
+
+\def\hm#1{#1\nobreak\discretionary{}{\hbox{\m@th$#1$}}{}}
+
+\def\?{\nobreak\smash{\vrule height 7pt depth 1pt width 2pt}\relax}
+
+\newcommand{\glossaryname}{Указатель имён}
+\newenvironment{theglossary}
+                {\chapter*{\glossaryname}%
+                \addcontentsline{toc}{schapter}{\glossaryname}%
+                \@mkboth{\glossaryname}%
+                        {\glossaryname}%
+                \thispagestyle{empty}%
+                \small}
+               {}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newlength{\tempwidth}
+\newlength{\tempwidthh}
+% Поместить формулу 2 в бокс, ширина которого равна ширине формулы 1
+\newcommand{\mybox}[2]{\settowidth{\tempwidth}{$#1$}\hbox to\tempwidth{%
+\hfil$#2$\hfil}}
+% то же для текста, выравнивание влево
+\newcommand{\myboxrighttxt}[2]{\leavevmode\settowidth{\tempwidth}{#1}\hbox to\tempwidth{%
+#2\hfil}}
+% то же с \dotfill
+\newcommand{\myboxfil}[1]{\settowidth{\tempwidth}{$#1$}\hbox to\tempwidth{%
+\hfil\dotfill\hfil}}
+\newcommand{\myboxfilmoved}[2]{%
+\settowidth{\tempwidth}{$#1$}\settowidth{\tempwidthh}{$#2$}%
+\hbox to\tempwidth{\hskip-\tempwidthh\,\dotfill\hskip\tempwidthh}%
+}
+
+\newcommand{\framevar}[1]{\;\fbox{$\mathstrut #1$}\;}%
+
+\newcommand{\myfil}{{\parfillskip=0pt\par}}
+
+\newcommand{\hole}{$\langle\,\dots\rangle$\xspace}
+
+\newcommand{\mysmall}{\@setfontsize\small\@ixpt{11}}
+
+\DeclareMathOperator{\st}{st}
+\DeclareMathOperator{\Th}{Th}
+
+% Отрицательный пробел в 2/3 тонкой шпации (для \nst)
+\def\mythin{\mskip-2mu}
+
+% Нестандартный аналог (звёздочка слева)
+\newcommand{\nst}[1]{{}^*\!#1}
+\newcommand{\nstbb}[1]{{}^*\mythin #1}
+\newcommand{\nstR}{{\nstbb{\bbR}}}
+
+\ifx\undefined\hyperpage
+  \newcommand{\defin}[1]{#1}%
+\else
+  \newcommand{\defin}[1]{\hyperpage{#1}}%
+\fi
+\ifx\undefined\texorpdfstring
+  \newcommand{\texorpdfstring}[2]{#1}%
+\fi

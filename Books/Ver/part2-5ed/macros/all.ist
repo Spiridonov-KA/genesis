@@ -1,0 +1,7 @@
+preamble "\\begin{theindex}\n
+\\raggedright\n"
+
+postamble "\n\n\\end{theindex}"
+delim_0 "~"
+delim_1 "~"
+delim_2 " "

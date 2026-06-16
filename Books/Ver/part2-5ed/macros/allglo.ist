@@ -1,0 +1,12 @@
+preamble "\\begin{theglossary}\\raggedright\n"
+postamble "\n\n\\end{theglossary}\n"
+
+keyword "\\glossaryentry"
+
+group_skip "\n"
+
+item_0  "\n\n\\hangindent=1cm\n"
+
+delim_0 "\\;:~"
+delim_1 " "
+delim_2 " "

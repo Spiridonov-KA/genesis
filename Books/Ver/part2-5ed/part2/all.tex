@@ -1,0 +1,22 @@
+%& --translate-file=../macros/koi2t2.tcx
+\documentclass[10pt,openany,a4paper]{book}
+\usepackage{../macros/shen}
+\usepackage{../macros/names}
+
+\begin{document}
+\include{tit} % tit.tex
+\include{kontrtit}  % kontrtit.tex
+\tableofcontents
+\clearpage
+\include{predisl} % predisl.tex
+\include{chapt01} % chapt01.tex
+\include{chapt02} % chapt02.tex
+\include{chapt03} % chapt03.tex
+\include{chapt04} % chapt04.tex
+\include{chapt05} % chapt05.tex
+\include{lit}
+\IfFileExists{all.ind}{\clearpage\input{all.ind}}
+{\addcontentsline{toc}{schapter}{\indexname}}
+\IfFileExists{all.gls}{\clearpage\input{all.gls}}
+{\addcontentsline{toc}{schapter}{\glossaryname}}
+\end{document}
