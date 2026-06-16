@@ -11,12 +11,14 @@
             "id": "af5475d87dae777c",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "Books/Ver/Н. К. Верещагин, А. Шень ЯЗЫКИ И ИСЧИСЛЕНИЯ.pdf"
+                "file": "Hotkeys.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "Н. К. Верещагин, А. Шень ЯЗЫКИ И ИСЧИСЛЕНИЯ"
+              "icon": "lucide-file",
+              "title": "Hotkeys"
             }
           }
         ]
@@ -182,6 +184,8 @@
   },
   "active": "af5475d87dae777c",
   "lastOpenFiles": [
+    "Thoughts.md",
+    "Books/Ver/Н. К. Верещагин, А. Шень ЯЗЫКИ И ИСЧИСЛЕНИЯ.pdf",
     "Books/Ver/part2-5ed/part2/majority-1.mps",
     "Books/Ver/part2-5ed/part2/all.log",
     "Books/Ver/part2-5ed/part2/all.fls",
@@ -191,14 +195,11 @@
     "Books/Ver/part2-5ed/part2/majority.1",
     "Books/Ver/part2-5ed/part2/majority.log",
     "Books/Н. К. Верещагин, А. Шень ЯЗЫКИ И ИСЧИСЛЕНИЯ/Н. К. Верещагин, А. Шень ЯЗЫКИ И ИСЧИСЛЕНИЯ.pdf",
-    "Books/Ver/part2-5ed/part2/4cover/part2.tif",
-    "Books/Ver/part2-5ed/part2/4cover/kontrobl.tex",
     "Latex/Untitled.md",
     "Untitled.md",
     "Books/Зорич/Зорич.md",
     "Поэты/Феодосий Петрович Савинов.md",
     "Слова/долина.md",
-    "Thoughts.md",
     "Стихотворения/Савинов Феодосий Петрович.md",
     "prompt.md",
     "Formula.md",
