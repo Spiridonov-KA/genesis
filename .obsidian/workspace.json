@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Books/Scheduling Multithreaded Computations by Work Stealing/prompt.md",
+                "file": "Thoughts.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "prompt"
+              "title": "Thoughts"
             }
           }
         ]
@@ -184,8 +184,8 @@
   },
   "active": "1bfa7a83a4b997fb",
   "lastOpenFiles": [
-    "Books/Scheduling Multithreaded Computations by Work Stealing/main.pdf",
     "Books/Scheduling Multithreaded Computations by Work Stealing/prompt.md",
+    "Books/Scheduling Multithreaded Computations by Work Stealing/main.pdf",
     "Books/Зорич/V.A.Zorich-Kniga-I-10-izdanie-Corr.pdf",
     "Books/Scheduling Multithreaded Computations by Work Stealing/main.tex",
     "Books/Scheduling Multithreaded Computations by Work Stealing/main.synctex.gz",

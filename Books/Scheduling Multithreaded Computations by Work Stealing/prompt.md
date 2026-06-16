@@ -49,3 +49,5 @@ The remainder of this paper is organized as follows: In Section 2, we review the
 O(x^3) + O(x^2) = O(x^3), при x->inf
 O(x^3) + O(x^2) = O(x^2), при x->0
 
+
+Как переводится слово "serial"?
