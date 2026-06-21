@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{geometry}
+\usepackage{graphicx}
 \geometry{a4paper, margin=1in}
 
 \title{Scheduling Multithreaded Computations by Work Stealing}
@@ -63,6 +64,12 @@ The remainder of this paper is organized as follows: In Section 2, we review the
 \section{A Model of Multithreaded Computation}
 This section reprises the graph-theoretic model of multithreaded computation introduced in Blumofe and Leiserson [1998]. We also define what it means for computations to be ``fully strict.'' We conclude with a statement of the greedy-scheduling theorem, which is an adaptation of theorems by Brent [1974] and Graham [1966; 1969] on dag scheduling.
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{/home/spiridonov-kirill/Documents/genesis/Books/Scheduling Multithreaded Computations by Work Stealing/img/fig_1.png}
+\caption{A multithreaded computation. This computation contains 23 instructions $v_1, v_2, \dots, v_{23}$ and 6 threads $\Gamma_1, \Gamma_2, \dots, \Gamma_6$.}
+\end{figure}
+
 A multithreaded computation is composed of a set of threads, each of which is a sequential ordering of unit-time instructions. The instructions are connected by dependency edges, which provide a partial ordering on which instructions must execute before which other instructions. In Figure~1, for example, each shaded block is a thread with circles representing instructions and the horizontal edges, called continue edges, representing the sequential ordering. Thread $T_5$ of this example contains 3 instructions: $v_{10}$, $v_{11}$, and $v_{12}$. The instructions of a thread must execute in this sequential order from the first (leftmost) instruction to the last (rightmost) instruction. In order to execute a thread, we allocate for it a chunk of memory, called an activation frame, that the instructions of the thread can use to store the values on which they compute.
 
 A $P$-processor execution schedule for a multithreaded computation determines which processors of a $P$-processor parallel computer execute which instructions at each step. An execution schedule depends on the particular multithreaded computation and the number $P$ of processors. In any given step of an execution schedule, each processor executes at most one instruction.
@@ -72,11 +79,6 @@ During the course of its execution, a thread may create, or spawn, other threads
 The spawn tree is the parallel analog of a call tree. In our example computation, the spawn tree's root thread $\Gamma_1$ has two children, $\Gamma_2$ and $\Gamma_6$, and thread $\Gamma_2$ has three children, $\Gamma_3$, $\Gamma_4$, and $\Gamma_5$. Threads $\Gamma_3$, $\Gamma_4$, $\Gamma_5$, and $\Gamma_6$, which have no children, are leaf threads.
 
 Each spawn edge goes from a specific instruction---the instruction that actually does the spawn operation---in the parent thread to the first instruction of the child thread. An execution schedule must obey this edge in that no processor may execute an instruction in a spawned child thread until after the spawning instruction in the parent thread has been executed. In our example computation (Figure~1), due to the spawn edge $(v_6, v_7)$, instruction $v_7$ cannot be executed until after the spawning instruction $v_6$. Consistent with our unit-time model of instructions, a single instruction may spawn at most one child. When the spawning instruction executes, it allocates an activation frame for the new child thread. Once a thread has been spawned and its frame has been allocated, we say the thread is alive or living. When the last instruction of a thread executes, it deallocates its frame and the thread dies.
-
-\begin{figure}[htbp]
-\centering
-\caption{A multithreaded computation. This computation contains 23 instructions $v_1, v_2, \dots, v_{23}$ and 6 threads $\Gamma_1, \Gamma_2, \dots, \Gamma_6$.}
-\end{figure}
 
 An execution schedule generally respects other dependencies besides those represented by continue and spawn edges. Consider an instruction that produces a data value to be consumed by another instruction. Such a producer/consumer relationship precludes the consuming instruction from executing until after the producing instruction. To enforce such orderings, other dependency edges, called join edges, may be required, as shown in Figure~1 by the curved edges. If the execution of a thread arrives at a consuming instruction before the producing instruction has executed, execution of the consuming thread cannot continue---the thread stalls. Once the producing instruction executes, the join dependency is resolved, which enables the consuming thread to resume its execution---the thread becomes ready. A multithreaded computation does not model the means by which join dependencies get resolved or by which unresolved join dependencies get detected. In implementation, resolution and detection can be accomplished using mechanisms such as join counters [Blumofe et al.\ 1996c], futures [Halstead 1984], or I-structures [Arvind et al.\ 1989].
 

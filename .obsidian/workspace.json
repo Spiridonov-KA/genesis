@@ -4,19 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "fd382ac4f17c9e15",
+        "id": "62de250352385572",
         "type": "tabs",
         "children": [
           {
-            "id": "af5475d87dae777c",
+            "id": "026db953faa8adb4",
             "type": "leaf",
             "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Books/Ver/Н. К. Верещагин, А. Шень ЯЗЫКИ И ИСЧИСЛЕНИЯ.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "Н. К. Верещагин, А. Шень ЯЗЫКИ И ИСЧИСЛЕНИЯ"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -72,7 +70,8 @@
               "title": "Bookmarks"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -177,24 +176,45 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "omnisearch:Omnisearch": false
     }
   },
-  "active": "e812ea35798c6946",
+  "active": "54d367a68e5418e7",
   "lastOpenFiles": [
+    "taskflow/unittests/cuda/details/tree.hpp",
+    "taskflow/unittests/cuda/details/graph_executor.hpp",
+    "taskflow/unittests/cuda/details/random_DAG.hpp",
+    "taskflow/unittests/cuda/details/graph_base.hpp",
+    "taskflow/unittests/cuda/details/diamond.hpp",
+    "taskflow/unittests/cuda/test_cuda_updates.cu",
+    "taskflow/unittests/cuda/test_cuda_transform.cu",
+    "taskflow/unittests/cuda/test_cuda_scan.cu",
+    "taskflow/unittests/cuda/test_cuda_reduce.cu",
+    "taskflow/unittests/cuda/test_cuda_objects.cu",
+    "taskflow/unittests/cuda/test_cuda_min_max_element.cu",
+    "taskflow/skills/doxygen-style.md",
+    "taskflow/images/taskflow_logo/vector/isolated-monochrome-white.svg",
+    "taskflow/images/taskflow_logo/vector/isolated-monochrome-black.svg",
+    "taskflow/images/taskflow_logo/vector/isolated-layout.svg",
+    "taskflow/images/taskflow_logo/vector/default.svg",
+    "taskflow/images/taskflow_logo/vector/default-monochrome.svg",
+    "taskflow/images/taskflow_logo/vector/default-monochrome-white.svg",
+    "taskflow/images/taskflow_logo/vector/default-monochrome-black.svg",
+    "taskflow/images/taskflow_logo/profile.png",
+    "taskflow/images/taskflow_logo/default.png",
+    "taskflow/images/taskflow_logo/cover.png",
+    "taskflow/benchmarks/mnist/readme.md",
+    "taskflow/benchmarks/benchmarks.md",
+    "taskflow/README.md",
+    "taskflow/3rd-party/tbb/README.md",
+    "taskflow/3rd-party/eigen-3.3.7/unsupported/Eigen/CXX11/src/Tensor/README.md",
+    "taskflow/3rd-party/eigen-3.3.7/README.md",
+    "taskflow/3rd-party/README.md",
+    "Books/Scheduling Multithreaded Computations by Work Stealing/prompt.md",
+    "Thoughts.md",
     "Books/Ver/prompt.md",
     "Hotkeys.md",
-    "Thoughts.md",
-    "Books/Ver/Н. К. Верещагин, А. Шень ЯЗЫКИ И ИСЧИСЛЕНИЯ.pdf",
-    "Books/Ver/part2-5ed/part2/majority-1.mps",
-    "Books/Ver/part2-5ed/part2/all.log",
-    "Books/Ver/part2-5ed/part2/all.fls",
-    "Books/Ver/part2-5ed/part2/pdflatex8.fls",
-    "Books/Ver/part2-5ed/part2/all.fdb_latexmk",
-    "Books/Ver/part2-5ed/part2/all.aux",
-    "Books/Ver/part2-5ed/part2/majority.1",
-    "Books/Ver/part2-5ed/part2/majority.log",
-    "Books/Н. К. Верещагин, А. Шень ЯЗЫКИ И ИСЧИСЛЕНИЯ/Н. К. Верещагин, А. Шень ЯЗЫКИ И ИСЧИСЛЕНИЯ.pdf",
     "Latex/Untitled.md",
     "Untitled.md",
     "Books/Зорич/Зорич.md",
@@ -203,17 +223,10 @@
     "Стихотворения/Савинов Феодосий Петрович.md",
     "prompt.md",
     "Formula.md",
-    "Books/Scheduling Multithreaded Computations by Work Stealing/img/FIG. 1. A multithreaded computation.png",
-    "Books/Scheduling Multithreaded Computations by Work Stealing/prompt.md",
     "Books/Anthony Williams C++ Concurrency In Action  2nd edition/C++ Concurrency in Action.md",
     "Слова/Долина.md",
     "Слова/Раздолье.md",
     "Слова/Нивы.md",
-    "Fun/Fun.md",
-    "Books/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14.md",
-    "Untitled asdf.md",
-    "Untitledasdf.md",
-    "Untitled 1.md",
-    "Welcome.md"
+    "Fun/Fun.md"
   ]
 }

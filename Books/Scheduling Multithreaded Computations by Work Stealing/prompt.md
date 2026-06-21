@@ -25,11 +25,16 @@ In this paper, we present and analyze a work-stealing algorithm for scheduling `
 
 ""
 
-Our main contribution is a randomized work-stealing scheduling algorithm for fully strict multithreaded computations which is provably efficient in terms of time, space, and communication. We prove that the expected time to execute a fully strict computation on $P$ processors using our work-stealing scheduler is $T_1/P + O(T_\infty)$, where $T_1$ is the minimum serial execution time of the multithreaded computation and $T_\infty$ is the minimum execution time with an infinite number of processors. In addition, the space required by the execution is at most $S_1 P$, where $S_1$ is the minimum serial space requirement. These bounds are better than previous bounds for work-sharing schedulers [Blumofe and Leiserson 1998], and the work-stealing scheduler is much simpler and eminently practical. Part of this improvement is due to our focusing on fully strict computations, as compared to the (general) strict computations studied in Blumofe and Leiserson [1998]. We also prove that the expected total communication of the execution is at most $O(P T_\infty (1 + n_d) S_{\max})$, where $S_{\max}$ is the size of the largest activation record of any thread and $n_d$ is the maximum number of times that any thread synchronizes with its parent. This bound is existentially tight to within a constant factor, meeting the lower bound of Wu and Kung [1991] for communication in parallel divide-and-conquer. In contrast, work-sharing schedulers have nearly worst-case behavior for communication. Thus, our results bolster the folk wisdom that work stealing is superior to work sharing.
+\section{A Model of Multithreaded Computation}
+This section reprises the graph-theoretic model of multithreaded computation introduced in Blumofe and Leiserson [1998]. We also define what it means for computations to be ``fully strict.'' We conclude with a statement of the greedy-scheduling theorem, which is an adaptation of theorems by Brent [1974] and Graham [1966; 1969] on dag scheduling.
 
-Others have studied and continue to study the problem of efficiently managing the space requirements of parallel computations. Culler and Arvind [1988] and Ruggiero and Sargeant [1987] give heuristics for limiting the space required by dataflow programs. Burton [1988] shows how to limit space in certain parallel computations without causing deadlock. More recently, Burton [1996] has developed and analyzed a scheduling algorithm with provably good time and space bounds. Blelloch et al.\ [1995; 1997] have also recently developed and analyzed scheduling algorithms with provably good time and space bounds. It is not yet clear whether any of these algorithms are as practical as work stealing.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{/home/spiridonov-kirill/Documents/genesis/Books/Scheduling Multithreaded Computations by Work Stealing/img/fig_1.png}
+\caption{A multithreaded computation. This computation contains 23 instructions $v_1, v_2, \dots, v_{23}$ and 6 threads $\Gamma_1, \Gamma_2, \dots, \Gamma_6$.}
+\end{figure}
 
-The remainder of this paper is organized as follows: In Section 2, we review the graph-theoretic model of multithreaded computations introduced in Blumofe and Leiserson [1998], which provides a theoretical basis for analyzing schedulers. Section 3 gives a simple scheduling algorithm which uses a central queue. This ``busy-leaves'' algorithm forms the basis for our randomized work-stealing algorithm, which we present in Section 4. In Section 5, we introduce the atomic-access model that we use to analyze execution time and communication costs for the work-stealing algorithm, and we present and analyze a combinatorial ``balls and bins'' game that we use to derive a bound on the contention that arises in random work stealing. We then use this bound along with a delay-sequence argument [Ranade 1987] in Section 6 to analyze the execution time and communication cost of the work-stealing algorithm. To conclude, in Section 7, we briefly discuss how the theoretical ideas in this paper have been applied to the Cilk programming language and runtime system [Blumofe et al.\ 1996c; Frigo et al.\ 1998], as well as make some concluding remarks.
+A multithreaded computation is composed of a set of threads, each of which is a sequential ordering of unit-time instructions. The instructions are connected by dependency edges, which provide a partial ordering on which instructions must execute before which other instructions. In Figure~1, for example, each shaded block is a thread with circles representing instructions and the horizontal edges, called continue edges, representing the sequential ordering. Thread $T_5$ of this example contains 3 instructions: $v_{10}$, $v_{11}$, and $v_{12}$. The instructions of a thread must execute in this sequential order from the first (leftmost) instruction to the last (rightmost) instruction. In order to execute a thread, we allocate for it a chunk of memory, called an activation frame, that the instructions of the thread can use to store the values on which they compute.
 
 ""
 
@@ -51,3 +56,29 @@ O(x^3) + O(x^2) = O(x^2), при x->0
 
 
 Как переводится слово "serial"?
+
+
+
+Можешь рассказать про этот момент поподробнее:
+
+""
+In addition, the space required by the execution is at most $S_1 P$, where $S_1$ is the minimum serial space requirement. These bounds are better than previous bounds for work-sharing schedulers [Blumofe and Leiserson 1998], and the work-stealing scheduler is much simpler and eminently practical.
+""
+
+Правильно я понял это оценка говорит о том, что сам алгоритм потребляет какую-то константную память, которая не увеличивает общую потребляемую память асимптотически. Так?
+
+
+Давай ещё раз. эта оценка $S_1 P$ говорит нам о том, что память программы S асимптотически такая $S_1 P$. Так?
+
+Т.е. правильно я понял, что при стратегии work-sharing, когда мы складываем задачи в глобальную очередь у нас оценка $S \le S_1 P$ может не выполняться, потому что задачи делаются отложенными и в случае вычисления последовательности фибоначи каждая задачу будет порождать ещё две, а вычисление будет откладываться. Так?
+
+Расскажи про вот это поподробнее:
+""
+We prove that the expected time to execute a fully strict computation on $P$ processors using our work-stealing scheduler is $T_1/P + O(T_\infty)$, where $T_1$ is the minimum serial execution time of the multithreaded computation and $T_\infty$ is the minimum execution time with an infinite number of processors
+""
+
+Что значит, что $T_1$ - это минимальное время выполнение последовательного выполнения? Что такое максимальное? Откуда взялось минимальное?
+
+
+Правильно я понял, что $T_\infty$ - это длина, время критического пути при выполнении программы на бесконечном числе потоков. И смысл этой величины в том, что вся наша программа не может выполнится быстрее $T_\infty$, потому что некоторые задачи B должны дождаться сначала выполнения задачи A и задачи B нельзя поставить на выполнение, пока не выполнится A. Я правильно понимаю?
+

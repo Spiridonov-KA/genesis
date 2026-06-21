@@ -27,7 +27,7 @@ Although this technique is powerful, it can't be applied to everything. Sometime
 ""
 
 
-Как переводится слово "cohesion"?
+Как переводится слово "adversary"?
 
 
 
@@ -275,3 +275,55 @@ $$
 
 
 Я хочу создать docker-image в котором будет конфигурация для Latex, чтобы можно было компилировать файлы pdf. Как это можно сделать?
+
+
+
+
+Я дальше читаю файл taskflow/taskflow/core/wsq.hpp.
+
+Помоги мне в нём разобраться.
+Я буду тебе скидывать файл по частям.
+Вот следующая часть:
+
+""
+
+// Function: capacity
+template <typename T>
+size_t UnboundedWSQ<T>::capacity() const noexcept {
+  return _array.load(std::memory_order_relaxed)->capacity();
+}
+
+template <typename T>
+typename UnboundedWSQ<T>::Array*
+UnboundedWSQ<T>::_resize_array(Array* a, int64_t b, int64_t t) {
+  Array* tmp = a->resize(b, t);
+  _garbage.push_back(a);
+  // Note: the original paper using relaxed causes t-san to complain
+  _array.store(tmp, std::memory_order_release);
+  return tmp;
+}
+
+template <typename T>
+typename UnboundedWSQ<T>::Array*
+UnboundedWSQ<T>::_resize_array(Array* a, int64_t b, int64_t t, size_t N) {
+  Array* tmp = a->resize(b, t, N);
+  _garbage.push_back(a);
+  // Note: the original paper using relaxed causes t-san to complain
+  _array.store(tmp, std::memory_order_release);
+  return tmp;
+}
+
+
+""
+
+
+
+А есть "Dynamic Circular Work-Stealing Deque" от Chase и Lev. В этом файле будет не её реализация?
+
+
+
+
+
+
+
+Хорошо. У нас есть lock-free deque. На сколько сложно имея её дописать thread pool с использованием механизма work-stealing?
