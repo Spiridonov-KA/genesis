@@ -11,10 +11,14 @@
             "id": "026db953faa8adb4",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Thoughts.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Thoughts"
             }
           }
         ]
@@ -70,8 +74,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -180,8 +183,10 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "54d367a68e5418e7",
+  "active": "026db953faa8adb4",
   "lastOpenFiles": [
+    "Songs/Михаил Круг. Летний день.md",
+    "Songs",
     "taskflow/unittests/cuda/details/tree.hpp",
     "taskflow/unittests/cuda/details/graph_executor.hpp",
     "taskflow/unittests/cuda/details/random_DAG.hpp",
@@ -191,8 +196,6 @@
     "taskflow/unittests/cuda/test_cuda_transform.cu",
     "taskflow/unittests/cuda/test_cuda_scan.cu",
     "taskflow/unittests/cuda/test_cuda_reduce.cu",
-    "taskflow/unittests/cuda/test_cuda_objects.cu",
-    "taskflow/unittests/cuda/test_cuda_min_max_element.cu",
     "taskflow/skills/doxygen-style.md",
     "taskflow/images/taskflow_logo/vector/isolated-monochrome-white.svg",
     "taskflow/images/taskflow_logo/vector/isolated-monochrome-black.svg",
