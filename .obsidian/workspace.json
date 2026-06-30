@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "62de250352385572",
+        "id": "7b9f8de5d0bef483",
         "type": "tabs",
         "children": [
           {
-            "id": "026db953faa8adb4",
+            "id": "a49ff80f2e6c31be",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Thoughts.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Thoughts"
+              "title": "New tab"
             }
           }
         ]
@@ -183,8 +179,16 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "026db953faa8adb4",
+  "active": "a49ff80f2e6c31be",
   "lastOpenFiles": [
+    "Books/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14.md",
+    "Books/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14/Scott Meyers-Effective Modern C++_ 42 Specific Ways to Improve Your Use of C++11 and C++14-O'Reilly Media (2014).pdf",
+    "Jokes/russians.md",
+    "Books/Iliad/gomer_iliada_1960_text.pdf",
+    "Books/Iliad",
+    "Jokes/Grandpa.md",
+    "Fun/Fun.md",
+    "Thoughts.md",
     "Songs/Михаил Круг. Летний день.md",
     "Songs",
     "taskflow/unittests/cuda/details/tree.hpp",
@@ -193,9 +197,6 @@
     "taskflow/unittests/cuda/details/graph_base.hpp",
     "taskflow/unittests/cuda/details/diamond.hpp",
     "taskflow/unittests/cuda/test_cuda_updates.cu",
-    "taskflow/unittests/cuda/test_cuda_transform.cu",
-    "taskflow/unittests/cuda/test_cuda_scan.cu",
-    "taskflow/unittests/cuda/test_cuda_reduce.cu",
     "taskflow/skills/doxygen-style.md",
     "taskflow/images/taskflow_logo/vector/isolated-monochrome-white.svg",
     "taskflow/images/taskflow_logo/vector/isolated-monochrome-black.svg",
@@ -215,7 +216,6 @@
     "taskflow/3rd-party/eigen-3.3.7/README.md",
     "taskflow/3rd-party/README.md",
     "Books/Scheduling Multithreaded Computations by Work Stealing/prompt.md",
-    "Thoughts.md",
     "Books/Ver/prompt.md",
     "Hotkeys.md",
     "Latex/Untitled.md",
@@ -226,10 +226,6 @@
     "Стихотворения/Савинов Феодосий Петрович.md",
     "prompt.md",
     "Formula.md",
-    "Books/Anthony Williams C++ Concurrency In Action  2nd edition/C++ Concurrency in Action.md",
-    "Слова/Долина.md",
-    "Слова/Раздолье.md",
-    "Слова/Нивы.md",
-    "Fun/Fun.md"
+    "Books/Anthony Williams C++ Concurrency In Action  2nd edition/C++ Concurrency in Action.md"
   ]
 }
