@@ -176,17 +176,27 @@
               "icon": "lucide-list",
               "title": "Outline of Савинов Феодосий Петрович"
             }
+          },
+          {
+            "id": "6b12a57cc41c9097",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-git:Open Git source control": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -197,7 +207,7 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "a49ff80f2e6c31be",
+  "active": "e812ea35798c6946",
   "lastOpenFiles": [
     "Books/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14/Scott Meyers-Effective Modern C++_ 42 Specific Ways to Improve Your Use of C++11 and C++14-O'Reilly Media (2014).md",
     "prompt.md",
