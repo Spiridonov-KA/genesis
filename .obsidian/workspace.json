@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "prompt.md",
+                "file": "Books/Pushkin. The Tale of Tsar Saltan, of his glorious and mighty son, Prince Gvidon Saltanovich, and of the beautiful Swan Princess/Pushkin. The Tale of Tsar Saltan, of his glorious and mighty son, Prince Gvidon Saltanovich, and of the beautiful Swan Princess.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "prompt"
+              "title": "Pushkin. The Tale of Tsar Saltan, of his glorious and mighty son, Prince Gvidon Saltanovich, and of the beautiful Swan Princess"
             }
           },
           {
@@ -168,13 +168,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Стихотворения/Савинов Феодосий Петрович.md",
+                "file": "Books/Pushkin. The Tale of Tsar Saltan, of his glorious and mighty son, Prince Gvidon Saltanovich, and of the beautiful Swan Princess/Pushkin. The Tale of Tsar Saltan, of his glorious and mighty son, Prince Gvidon Saltanovich, and of the beautiful Swan Princess.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Савинов Феодосий Петрович"
+              "title": "Outline of Pushkin. The Tale of Tsar Saltan, of his glorious and mighty son, Prince Gvidon Saltanovich, and of the beautiful Swan Princess"
             }
           },
           {
@@ -188,7 +188,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -207,10 +207,10 @@
       "omnisearch:Omnisearch": false
     }
   },
-  "active": "e812ea35798c6946",
+  "active": "a49ff80f2e6c31be",
   "lastOpenFiles": [
-    "Books/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14/Scott Meyers-Effective Modern C++_ 42 Specific Ways to Improve Your Use of C++11 and C++14-O'Reilly Media (2014).md",
     "prompt.md",
+    "Books/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14/Scott Meyers-Effective Modern C++_ 42 Specific Ways to Improve Your Use of C++11 and C++14-O'Reilly Media (2014).md",
     "Books/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14.md",
     "Books/Scott Meyers Effective Modern C++42 SPECIFIC WAYS TO IMPROVE YOUR USE OF C++11 AND C++14/Scott Meyers-Effective Modern C++_ 42 Specific Ways to Improve Your Use of C++11 and C++14-O'Reilly Media (2014).pdf",
     "Jokes/russians.md",
